@@ -4,6 +4,7 @@ import {
   View,
   TouchableOpacity,
   StyleSheet,
+  Image,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Input from '../../components/Input';
@@ -27,13 +28,6 @@ const Register = () => {
   };
 
   const loginUser = async () => {
-    console.log(JSON.stringify({
-      'username': username,
-      'password': password,
-      'email': email,
-      'name': name,
-      'is_admin': false,
-    }));
     const responseLogin = await fetch('https://monitoracovid-backend.herokuapp.com/register', {
       method: 'POST',
       headers: {
@@ -60,6 +54,14 @@ const Register = () => {
 
   return (
     <View style={{padding: 30, display: 'flex', justifyContent: 'center', flexDirection: 'column', height: '100%'}}>
+            <View style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 50
+      }}>
+        <Image source={require('../../../assets/img/logo.png')} style={{width: 200, height: 230}} />
+      </View>
       <Input label='Nome Completo' text={name} onChangeText={setName} />
       <Input label='Nome de Usuário' text={username} onChangeText={setUsername} />
       <Input label='Email' text={email} onChangeText={setEmail} />

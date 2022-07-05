@@ -31,7 +31,7 @@ const Agendar = (props) => {
 
     return name;
   }
-  console.log(person);
+
   const realizarAgendamento = async () => {
     if (dayStart === '' || dayEnd === '' || hourEnd === '' || hourStart === '') {
       return;
@@ -75,28 +75,6 @@ const Agendar = (props) => {
         .catch(err => console.log(err));
     }
   };
-
-  // useEffect(() => {
-  //   (async () => {
-  //     const reservationsURL = `https://monitoracovid-backend.herokuapp.com/get-rooms`;
-  //     console.log(reservationsURL);
-  //     await fetch(reservationsURL, {
-  //       method: 'GET',
-  //     })
-  //       .then(res => res.json())
-  //       .then(data => {
-  //         setRooms(data);
-  //       })
-  //       .catch(err => console.error(err));
-  //   })();
-  // }, []);
-  
-  console.log(dayStart);
-
-  function parseDate(str) {
-    var m = str.match(/^(\d{1,2})-(\d{1,2})-(\d{4})$/);
-    console.log( (m) ? new Date(m[3], m[2]-1, m[1]) : null);
-  }
 
   return (
     <View>

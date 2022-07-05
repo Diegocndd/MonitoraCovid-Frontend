@@ -41,11 +41,8 @@ const Dashboard = () => {
   }
 
   useEffect(() => {
-    console.log('kkkk');
-
     (async () => {
       const reservationsURL = `https://monitoracovid-backend.herokuapp.com/get-rooms`;
-      console.log(reservationsURL);
       await fetch(reservationsURL, {
         method: 'GET',
       })
@@ -58,13 +55,11 @@ const Dashboard = () => {
 
     (async () => {
       const reservationsURL = `https://monitoracovid-backend.herokuapp.com/get-reservations?user=${id_user}`;
-      console.log(reservationsURL);
       await fetch(reservationsURL, {
         method: 'GET',
       })
         .then(res => res.json())
         .then(data => {
-          console.log(data);
           setReservations(data);
         })
         .catch(err => console.error(err));

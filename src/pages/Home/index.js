@@ -4,6 +4,7 @@ import {
   View,
   TouchableOpacity,
   StyleSheet,
+  Image,
 } from 'react-native';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import Input from '../../components/Input';
@@ -46,6 +47,15 @@ const Home = () => {
 
   return (
     <View style={{padding: 30, display: 'flex', justifyContent: 'center', flexDirection: 'column', height: '100%'}}>
+      <View style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 50
+      }}>
+        <Image source={require('../../../assets/img/logo.png')} style={{width: 200, height: 230}} />
+      </View>
+
       <Input label='Usuário' text={login} onChangeText={setLogin} />
       <Input
         label='Senha'

@@ -30,7 +30,6 @@ const Agendamento = () => {
   useEffect(() => {
     (async () => {
       const reservationsURL = `https://monitoracovid-backend.herokuapp.com/get-rooms`;
-      console.log(reservationsURL);
       await fetch(reservationsURL, {
         method: 'GET',
       })
@@ -63,7 +62,6 @@ const Agendamento = () => {
       <View style={styles.agendamentoContainer}>
         <Text style={styles.agendamentoTitle}>Selecione uma sala</Text>
         {rooms.map(item => {
-          console.log(item);
           return (
             <TouchableOpacity
               style={[{backgroundColor: item.actual_amount || item.actual_amount === 0 ? getColorAvailabel(item) : '#7B6CD9'}, styles.salaBox]}
