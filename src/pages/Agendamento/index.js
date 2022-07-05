@@ -42,18 +42,38 @@ const Agendamento = () => {
     })();
   }, []);
 
+  const getColorAvailabel = (item) => {
+    if (Number(item.actual_amount) === 0) {
+      return 'gray';
+    }
+
+    return '#7B6CD9';
+  }
+
+  const goToAgendar = (item) => {
+    if (Number(item.actual_amount) === 0 && typeof item.actual_amount === 'number') {
+      return;
+    }
+
+    navigation.navigate('Agendar', {room: item});
+  }
+
   return (
     <View>
       <View style={styles.agendamentoContainer}>
         <Text style={styles.agendamentoTitle}>Selecione uma sala</Text>
         {rooms.map(item => {
+          console.log(item);
           return (
             <TouchableOpacity
-              style={styles.salaBox}
-              onPress={() => navigation.navigate('Agendar', {room: item})}
+              style={[{backgroundColor: item.actual_amount || item.actual_amount === 0 ? getColorAvailabel(item) : '#7B6CD9'}, styles.salaBox]}
+              onPress={() => goToAgendar(item)}
             >
               <Text style={styles.nameRoom}>{item.name}</Text>
               <Text style={styles.qtyMax}>Quantidade máxima: {item.max_amount}</Text>
+              {item.actual_amount || item.actual_amount === 0 ? (
+                <Text style={styles.qtyMax}>Reservas disponíveis: {item.actual_amount}</Text>
+              ) : null}
             </TouchableOpacity>
           )
         })}
@@ -78,7 +98,6 @@ const styles = StyleSheet.create({
     color: 'black'
   },
   salaBox: {
-    backgroundColor: '#7B6CD9',
     paddingHorizontal: 20,
     paddingVertical: 30,
     borderRadius: 20,
